@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Noumantayyab987/Campus-Surveillance-System/static/css/main.5775b031.css",
+    "main.js": "/Noumantayyab987/Campus-Surveillance-System/static/js/main.49945fef.js",
+    "static/js/787.f8edc9fd.chunk.js": "/Noumantayyab987/Campus-Surveillance-System/static/js/787.f8edc9fd.chunk.js",
+    "index.html": "/Noumantayyab987/Campus-Surveillance-System/index.html",
+    "main.5775b031.css.map": "/Noumantayyab987/Campus-Surveillance-System/static/css/main.5775b031.css.map",
+    "main.49945fef.js.map": "/Noumantayyab987/Campus-Surveillance-System/static/js/main.49945fef.js.map",
+    "787.f8edc9fd.chunk.js.map": "/Noumantayyab987/Campus-Surveillance-System/static/js/787.f8edc9fd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5775b031.css",
+    "static/js/main.49945fef.js"
+  ]
+}
