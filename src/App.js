@@ -5,7 +5,7 @@ import DashboardLayout from './components/DashboardLayout';
 import Dashboard from './pages/Dashboard';
 import UploadVideoFootage from './pages/UploadVideoFootage';
 import AddLiveCameras from './pages/AddLiveCameras';
-import Registration from './Registration';
+import Registration from './pages/Registration';
 import { AuthProvider } from './AuthContext';
 
 const App = () => {
