@@ -2,7 +2,7 @@
   "name": "person-re-id",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://noumantayyab987.github.io/Campus-Surveillance-System",
+  "homepage": "http://noumantayyab987.github.io/Campus-Surveillance-System",
   "scripts": {
     "start": "react-scripts start",
     "predeploy": "npm run build",
