@@ -19,8 +19,6 @@ const App = () => {
           <Route path="/dashboard" element={<DashboardLayout><Dashboard /></DashboardLayout>} />
           <Route path="/UploadVideoFootage" element={<DashboardLayout><UploadVideoFootage /></DashboardLayout>} />
           <Route path="/AddLiveCameras" element={<DashboardLayout><AddLiveCameras /></DashboardLayout>} />
-          <Route path="/product" element={<DashboardLayout><Product /></DashboardLayout>} />
-          <Route path="/productList" element={<DashboardLayout><ProductList /></DashboardLayout>} />
         </Routes>
       </AuthProvider>
     </Router>
