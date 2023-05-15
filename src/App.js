@@ -5,8 +5,6 @@ import DashboardLayout from './components/DashboardLayout';
 import Dashboard from './pages/Dashboard';
 import UploadVideoFootage from './pages/UploadVideoFootage';
 import AddLiveCameras from './pages/AddLiveCameras';
-import Product from './pages/Product';
-import ProductList from './pages/ProductList';
 import Registration from './Registration';
 import { AuthProvider } from './AuthContext';
 
