@@ -1,0 +1,12 @@
+install these package before run the project:
+
+npm install react-router-dom
+
+npm install styled-components
+
+npm install @fortawesome/react-fontawesome
+
+npm install axios
+
+npm install react-icons
+
