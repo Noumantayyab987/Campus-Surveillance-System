@@ -44,9 +44,9 @@ function Dashboard() {
 
   return (
     <div>
-      <h1 className="dashboard-title">User Profile</h1>
+      <h1>User Profile</h1>
       {userData ? (
-        <div className="user-data-box">
+        <div>
           <p>ID: {userData.id}</p>
           <p>Name: {userData.name}</p>
           <p>Email: {userData.email}</p>

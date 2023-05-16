@@ -25,10 +25,6 @@ function Registration() {
         setSuccessMessage('');
         setErrorMessage('User already exists!');
       }
-      elseif (response.status === 404) {
-        setSuccessMessage("Invalid email or password");
-        setErrorMessage('');
-      }
     } catch (error) {
       console.error(error);
       setSuccessMessage('');
@@ -101,8 +97,6 @@ function Registration() {
           <Components.Input name='password' type='password' placeholder='Password' />
           <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
           <Components.Button>Sigin In</Components.Button>
-          {successMessage && <Components.SuccessMessage>{successMessage}</Components.SuccessMessage>}
-          {errorMessage && <Components.ErrorMessage>{errorMessage}</Components.ErrorMessage>}
   </Components.Form>
 </Components.SignInContainer>
 
