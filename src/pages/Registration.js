@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import * as Components from './Components';
 
 function Registration() {
@@ -56,6 +56,25 @@ function Registration() {
       setErrorMessage('Error logging in!');
     }
   }
+  const logout = () => {
+    // Destroy access token
+    document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    document.cookie = 'token_type=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+    // Redirect to the registration page or any other desired page
+    window.location.href = 'https://gregarious-pothos-f687f0.netlify.app/registration';
+  };
+
+  useEffect(() => {
+    // Add the beforeunload event listener
+    window.addEventListener('beforeunload', logout);
+
+    return () => {
+      // Remove the event listener on component unmount
+      window.removeEventListener('beforeunload', logout);
+    };
+  }, []);
+
 
   const handleLogin = (event) => {
     event.preventDefault();
