@@ -8,11 +8,19 @@ const Sidebar = () => {
   const toggle = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(true); // Add a new function to close the menu
 
-  const menuItems = [    
-    { path: '/dashboard', name: 'Dashboard', icon: <FaTh /> },    
-    { path: '/UploadVideoFootage', name: 'Upload Video Footage', icon: <FaUserAlt /> },    
-    { path: '/addlivecameras', name: 'Add Live Cameras', icon: <FaRegChartBar /> }
+  const menuItems = [
+    { path: '/dashboard', name: 'Dashboard', icon: <FaTh /> },
+    { path: '/UploadVideoFootage', name: 'Upload Video Footage', icon: <FaUserAlt /> },
+    { path: '/addlivecameras', name: 'Add Live Cameras', icon: <FaRegChartBar /> },
+    { path: '/logout', name: 'Logout', icon: <FaRegChartBar /> }
   ];
+
+  const handleLogout = () => {
+    // Clear cookies or perform any other logout logic
+    document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    // Redirect to the login page or any other desired page
+    window.location.href = '/';
+  };
 
   return (
     <SidebarContainer isOpen={isOpen}>
@@ -34,10 +42,12 @@ const Sidebar = () => {
             </MenuItem>
           </NavLink>
         ))}
+        <MenuItem onClick={handleLogout}>Logout</MenuItem> {/* Add the logout button */}
       </MenuList>
     </SidebarContainer>
   );
 };
+
 
 
 const DashboardLayout = ({ children }) => {
