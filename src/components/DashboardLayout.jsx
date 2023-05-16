@@ -11,8 +11,7 @@ const Sidebar = () => {
   const menuItems = [
     { path: '/dashboard', name: 'Dashboard', icon: <FaTh /> },
     { path: '/UploadVideoFootage', name: 'Upload Video Footage', icon: <FaUserAlt /> },
-    { path: '/addlivecameras', name: 'Add Live Cameras', icon: <FaRegChartBar /> },
-    { path: '/logout', name: 'Logout', icon: <FaRegChartBar /> }
+    { path: '/addlivecameras', name: 'Add Live Cameras', icon: <FaRegChartBar /> }
   ];
 
   const handleLogout = () => {
