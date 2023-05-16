@@ -108,6 +108,8 @@ function Registration() {
       <Components.SignUpContainer signinIn={signIn}>
         <Components.Form onSubmit={handleRegistration}>
           <Components.Title>Create Account</Components.Title>
+          
+
           <Components.Input name='name' type='text' placeholder='Name' />
           <Components.Input name='email' type='email' placeholder='Email' />
           <Components.Input name='password' type='password' placeholder='Password' />
@@ -124,17 +126,22 @@ function Registration() {
           <Components.Input name='password' type='password' placeholder='Password' />
           <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
           <Components.Button>Sigin In</Components.Button>
-        </Components.Form>
-      </Components.SignInContainer>
+  </Components.Form>
+</Components.SignInContainer>
+
 
       <Components.OverlayContainer signinIn={signIn}>
         <Components.Overlay signinIn={signIn}>
+
           <Components.LeftOverlayPanel signinIn={signIn}>
             <Components.Title>Welcome Back!</Components.Title>
             <Components.Paragraph>
               To keep connected with us please login with your personal info
+              
             </Components.Paragraph>
-            <Components.GhostButton>Sign In</Components.GhostButton>
+            <Components.GhostButton>
+              Sign In
+            </Components.GhostButton>
           </Components.LeftOverlayPanel>
 
           <Components.RightOverlayPanel signinIn={signIn}>
@@ -146,14 +153,14 @@ function Registration() {
               Sigin Up
             </Components.GhostButton> 
           </Components.RightOverlayPanel>
+
         </Components.Overlay>
       </Components.OverlayContainer>
-
       <style>{`
         @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
         * {
-          box-sizing: border-box;
-        }
+        box-sizing: border-box;
+      }
         body {
           background: #f6f5f7;
           display: flex;
@@ -163,12 +170,6 @@ function Registration() {
           font-family: "Montserrat", sans-serif;
           height: 100vh;
           margin: -20px 0 50px;
-        }
-        
-        /* Media Queries */
-        @media (max-width: 768px) {
-          /* Adjust styles for smaller screens */
-          // ... Add your responsive styles here ...
         }
       `}</style>
     </Components.Container>
