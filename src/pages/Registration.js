@@ -49,7 +49,7 @@ function Registration() {
         document.cookie = `access_token=${data.access_token}`;
         document.cookie = `token_type=${data.token_type}`;
        // window.location.href = "https://gregarious-pothos-f687f0.netlify.app/dashboard"; // redirect to dashboard
-       window.location.href = "http://localhost:3000/dashboard"; // redirect to dashboard
+       window.location.href = "https://gregarious-pothos-f687f0.netlify.app/dashboard"; // redirect to dashboard
       }
     } catch (error) {
       console.error(error);
