@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState } from 'react';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [authenticated, setAuthenticated] = useState(false);
+  const [setAuthenticated] = useState(false);
 
   const login = () => {
     // Perform your login logic here
