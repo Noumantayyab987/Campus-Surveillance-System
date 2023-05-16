@@ -48,7 +48,8 @@ function Registration() {
         // Set cookies
         document.cookie = `access_token=${data.access_token}`;
         document.cookie = `token_type=${data.token_type}`;
-        window.location.href = "https://gregarious-pothos-f687f0.netlify.app/dashboard"; // redirect to dashboard
+       // window.location.href = "https://gregarious-pothos-f687f0.netlify.app/dashboard"; // redirect to dashboard
+       window.location.href = "http://localhost:3000/dashboard"; // redirect to dashboard
       }
     } catch (error) {
       console.error(error);
@@ -57,22 +58,31 @@ function Registration() {
     }
   }
   const logout = () => {
-    // Destroy access token
-    document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    document.cookie = 'token_type=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-
     // Redirect to the registration page or any other desired page
     window.location.href = 'https://gregarious-pothos-f687f0.netlify.app/registration';
   };
 
   useEffect(() => {
-    // Add the beforeunload event listener
-    window.addEventListener('beforeunload', logout);
-
-    return () => {
-      // Remove the event listener on component unmount
-      window.removeEventListener('beforeunload', logout);
+    const handleLogout = () => {
+      const accessToken = getCookie('access_token');
+      if (accessToken) {
+        logout();
+      }
     };
+    const getCookie = (name) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    };
+
+    const accessToken = getCookie('access_token');
+    if (accessToken) {
+      const expires = new Date();
+      expires.setTime(expires.getTime() + 10 * 60 * 1000); // Set expiry time to 10 minutes from now
+      document.cookie = `access_token=${accessToken}; expires=${expires.toUTCString()}; path=/`;
+    } else {
+      handleLogout();
+    }
   }, []);
 
 

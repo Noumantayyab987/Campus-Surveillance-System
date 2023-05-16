@@ -1,33 +1,39 @@
-import React, { useState, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-const AuthContext = React.createContext({
-  isAuthenticated: false,
-  login: () => {},
-  logout: () => {},
-});
+const AuthContext = createContext();
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
+export const AuthProvider = ({ children }) => {
+  const [authenticated, setAuthenticated] = useState(false);
 
-export function AuthProvider(props) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  function login() {
-    // Perform login logic here, e.g. send a request to the server
-    setIsAuthenticated(true);
-  }
-
-  function logout() {
-    // Perform logout logic here, e.g. clear the authentication token
-    setIsAuthenticated(false);
-  }
-
-  const contextValue = {
-    isAuthenticated,
-    login,
-    logout,
+  const login = () => {
+    // Perform your login logic here
+    setAuthenticated(true);
   };
 
-  return <AuthContext.Provider value={contextValue} {...props} />;
-}
+  const logout = () => {
+    // Perform your logout logic here
+    setAuthenticated(false);
+  };
+
+  const isAuthenticated = () => {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith('access_token=')) {
+        const token = cookie.substring('access_token='.length);
+        return !!token; // Check if the token exists
+      }
+    }
+    return false;
+  };
+
+  return (
+    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
