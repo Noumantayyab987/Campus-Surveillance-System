@@ -142,13 +142,22 @@ const Input = styled.input`
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-color: #1e88e5;
+  
   &:hover {
     cursor: pointer;
     color: black;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
   }
+  
+  &:focus {
+    outline: none;
+    border-color: #1e88e5; /* Add blue border color */
+    box-shadow: 0px 0px 3px 2px rgba(30, 136, 229, 0.6); /* Optional: Add a subtle box shadow */
+  }
 `;
+
 
 const Button = styled.button`
   font-size: 1.2rem;
@@ -166,6 +175,8 @@ const Button = styled.button`
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   margin-top: 10%;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-color: #1e88e5;
   &:hover {
     cursor: pointer;
     color: black;
