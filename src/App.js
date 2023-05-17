@@ -19,11 +19,17 @@ const App = () => {
     useEffect(() => {
       if (!isAuthenticated()) {
         navigate('/');
+        return; // Add return statement here
+      } else {
+        navigate('/dashboard');
+        return; // Add return statement here
       }
     }, [isAuthenticated, navigate]);
   
     return element;
   };
+  
+  
   
 
   return (

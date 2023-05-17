@@ -203,7 +203,10 @@ function Registration() {
         setSuccessMessage('User created successfully!');
         setErrorMessage('');
         window.location.reload();
-      } else {
+      }else if (response.status === 406) {
+        setSuccessMessage('');
+        setErrorMessage('Email is invalid');
+      }else {
         setSuccessMessage('');
         setErrorMessage('User already exists!');
       }
@@ -231,10 +234,19 @@ function Registration() {
       if (response.status === 200) {
         document.cookie = `access_token=${data.access_token}; Secure`;
         document.cookie = `token_type=${data.token_type}; Secure`;
-  
+
+        setSuccessMessage('Successfully logged in!');
+        setErrorMessage('');
+
         setIsLoggedIn(true); // Set login status to true
-  
+
         window.location.href = 'https://gregarious-pothos-f687f0.netlify.app/dashboard';
+      } else if (response.status === 404) {
+        setSuccessMessage('');
+        setErrorMessage('Invalid email or password.');
+      } else {
+        setSuccessMessage('');
+        setErrorMessage('Error logging in!');
       }
     } catch (error) {
       console.error(error);
@@ -293,10 +305,11 @@ function Registration() {
     <Container>
       {isSignIn ? (
         <SignInContainer>
+
         <Form onSubmit={handleLogin}>
           <Title>Sign In</Title>
           {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
-          {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+            {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
           <Input type="email" name="email" placeholder="Email" required />
           <Input type="password" name="password" placeholder="Password" required />
           <Button type="submit">Sign In</Button>
