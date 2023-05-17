@@ -234,7 +234,7 @@ function Registration() {
   
         setIsLoggedIn(true); // Set login status to true
   
-        window.location.href = 'http://localhost:3000/dashboard';
+        window.location.href = 'https://gregarious-pothos-f687f0.netlify.app/dashboard';
       }
     } catch (error) {
       console.error(error);
