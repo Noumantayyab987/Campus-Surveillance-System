@@ -234,7 +234,7 @@ function Registration() {
   
         setIsLoggedIn(true); // Set login status to true
   
-        window.location.href = 'https://gregarious-pothos-f687f0.netlify.app/dashboard';
+        window.location.href = 'http://localhost:3000/dashboard';
       }
     } catch (error) {
       console.error(error);
@@ -262,6 +262,8 @@ function Registration() {
     setIsSignIn(!isSignIn);
   };
 
+ 
+
   useEffect(() => {
     const handleLogout = () => {
       if (isLoggedIn) {
@@ -269,27 +271,23 @@ function Registration() {
       }
     };
 
-    const getCookie = (name) => {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-    };
+    
 
     const logout = () => {
       document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
       document.cookie = 'token_type=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    
+  
       setIsLoggedIn(false); // Set login status to false
-    
+  
       window.location.href = 'https://gregarious-pothos-f687f0.netlify.app/';
     };
-
+  
     window.addEventListener('beforeunload', handleLogout);
-
+  
     return () => {
       window.removeEventListener('beforeunload', handleLogout);
     };
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <Container>
