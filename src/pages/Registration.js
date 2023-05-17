@@ -1,10 +1,192 @@
-import React, { useEffect} from 'react';
-import * as Components from './Components';
+import React, { useState, useEffect } from 'react';
+import styled, { keyframes } from 'styled-components';
+
+
+
+
+const glowAnimation = keyframes`
+  0% {
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.6), 0 0 20px rgba(74, 144, 226, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(74, 144, 226, 0.6), 0 0 50px rgba(74, 144, 226, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.6), 0 0 20px rgba(74, 144, 226, 0.6);
+  }
+`;
+
+
+const Container = styled.div`
+  overflow: hidden;
+  background-image: url('https://www.hdwallpapers.in/thumbs/2021/plant_leaves_water_drops_dark_background_4k_hd_nature-t2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(rgb(255, 255, 255), rgb(0, 181, 255));
+
+  @keyframes dropletAnim {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translateY(10px) scale(1.2);
+      opacity: 0.4;
+    }
+    100% {
+      transform: translateY(20px) scale(1);
+      opacity: 0.8;
+    }
+  }
+`;
+
+const SignUpContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  padding: 20px;
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+  margin: 2% 2% 20px 2%;
+  background: rgba(74, 144, 226, 0);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 10px;
+  /* Add border animation */
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    animation: ${glowAnimation} 2s linear infinite alternate;
+
+
+    
+  }
+`;
+const SignInContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  padding: 20px;
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+  margin: 2% 2% 20px 2%;
+  background: rgba(74, 144, 226, 0);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 10px;
+  /* Add border animation */
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    animation: ${glowAnimation} 2s linear infinite alternate;
+  }
+`;
+
+
+const Title = styled.h2`
+font-size: 24px;
+margin-bottom: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Input = styled.input`
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.4rem;
+  color: #1e88e5;
+  transition: all 0.3s ease-in-out;
+  background: rgba(74, 144, 226, 0);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  &:hover {
+    cursor: pointer;
+    color: black;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+`;
+
+const Button = styled.button`
+  font-size: 1.2rem;
+  padding: 0.3rem 0.5rem;
+  border: none;
+  border-radius: 0.4rem;
+  background: linear-gradient(to bottom right, #4a386b, #241a61, #4a386b);
+  color: #1e88e5;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  background: rgba(74, 144, 226, 0);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  margin-top: 10%;
+  &:hover {
+    cursor: pointer;
+    color: black;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+`;
+
+const SuccessMessage = styled.p`
+  color: green;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+`;
+
 
 function Registration() {
-
-  const [successMessage, setSuccessMessage] = React.useState('');
-  const [errorMessage, setErrorMessage] = React.useState('');
+  const [isSignIn, setIsSignIn] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const registerUser = async (name, email, password) => {
     try {
@@ -30,7 +212,7 @@ function Registration() {
       setSuccessMessage('');
       setErrorMessage('Error creating user!');
     }
-  }
+  };
 
   const loginUser = async (email, password) => {
     try {
@@ -38,59 +220,27 @@ function Registration() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          'accept': 'application/json',
+          accept: 'application/json',
         },
-        body: `grant_type=&username=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&scope=&client_id=&client_secret=`,
+        body: `grant_type=&username=${encodeURIComponent(
+          email
+        )}&password=${encodeURIComponent(password)}&scope=&client_id=&client_secret=`,
       });
       const data = await response.json();
       console.log(data);
       if (response.status === 200) {
-        // Set cookies
-        document.cookie = `access_token=${data.access_token}`;
-        document.cookie = `token_type=${data.token_type}`;
-       // window.location.href = "https://gregarious-pothos-f687f0.netlify.app/dashboard"; // redirect to dashboard
-       window.location.href = "https://gregarious-pothos-f687f0.netlify.app/dashboard"; // redirect to dashboard
+        document.cookie = `access_token=${data.access_token}; Secure`;
+        document.cookie = `token_type=${data.token_type}; Secure`;
+  
+        setIsLoggedIn(true); // Set login status to true
+  
+        window.location.href = 'https://gregarious-pothos-f687f0.netlify.app/dashboard';
       }
     } catch (error) {
       console.error(error);
       setSuccessMessage('');
       setErrorMessage('Error logging in!');
     }
-  }
-  const logout = () => {
-    // Redirect to the registration page or any other desired page
-    window.location.href = 'https://gregarious-pothos-f687f0.netlify.app/registration';
-  };
-
-  useEffect(() => {
-    const handleLogout = () => {
-      const accessToken = getCookie('access_token');
-      if (accessToken) {
-        logout();
-      }
-    };
-    const getCookie = (name) => {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-    };
-
-    const accessToken = getCookie('access_token');
-    if (accessToken) {
-      const expires = new Date();
-      expires.setTime(expires.getTime() + 10 * 60 * 1000); // Set expiry time to 10 minutes from now
-      document.cookie = `access_token=${accessToken}; expires=${expires.toUTCString()}; path=/`;
-    } else {
-      handleLogout();
-    }
-  }, []);
-
-
-  const handleLogin = (event) => {
-    event.preventDefault();
-    const email = event.target.elements.email.value;
-    const password = event.target.elements.password.value;
-    loginUser(email, password);
   };
 
   const handleRegistration = (event) => {
@@ -101,77 +251,85 @@ function Registration() {
     registerUser(name, email, password);
   };
 
-  const [signIn, toggle] = React.useState(true);
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const email = event.target.elements.email.value;
+    const password = event.target.elements.password.value;
+    loginUser(email, password);
+  };
+
+  const toggleSignIn = () => {
+    setIsSignIn(!isSignIn);
+  };
+
+  useEffect(() => {
+    const handleLogout = () => {
+      if (isLoggedIn) {
+        logout();
+      }
+    };
+
+    const getCookie = (name) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    };
+
+    const logout = () => {
+      document.cookie = 'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      document.cookie = 'token_type=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    
+      setIsLoggedIn(false); // Set login status to false
+    
+      window.location.href = 'https://gregarious-pothos-f687f0.netlify.app/';
+    };
+
+    window.addEventListener('beforeunload', handleLogout);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleLogout);
+    };
+  }, []);
 
   return (
-    <Components.Container>
-      <Components.SignUpContainer signinIn={signIn}>
-        <Components.Form onSubmit={handleRegistration}>
-          <Components.Title>Create Account</Components.Title>
-          <Components.Input name='name' type='text' placeholder='Name' />
-          <Components.Input name='email' type='email' placeholder='Email' />
-          <Components.Input name='password' type='password' placeholder='Password' />
-          <Components.Button>Sign Up</Components.Button>
-          {successMessage && <Components.SuccessMessage>{successMessage}</Components.SuccessMessage>}
-          {errorMessage && <Components.ErrorMessage>{errorMessage}</Components.ErrorMessage>}
-        </Components.Form>
-      </Components.SignUpContainer>
-
-      <Components.SignInContainer signinIn={signIn}>
-        <Components.Form onSubmit={handleLogin}>
-          <Components.Title>Sign in</Components.Title>
-          <Components.Input name='email' type='email' placeholder='Email' />
-          <Components.Input name='password' type='password' placeholder='Password' />
-          <Components.Anchor href='#'>Forgot your password?</Components.Anchor>
-          <Components.Button>Sigin In</Components.Button>
-        </Components.Form>
-      </Components.SignInContainer>
-
-      <Components.OverlayContainer signinIn={signIn}>
-        <Components.Overlay signinIn={signIn}>
-          <Components.LeftOverlayPanel signinIn={signIn}>
-            <Components.Title>Welcome Back!</Components.Title>
-            <Components.Paragraph>
-              To keep connected with us please login with your personal info
-            </Components.Paragraph>
-            <Components.GhostButton>Sign In</Components.GhostButton>
-          </Components.LeftOverlayPanel>
-
-          <Components.RightOverlayPanel signinIn={signIn}>
-            <Components.Title>Hello, Friend!</Components.Title>
-            <Components.Paragraph>
-              Enter Your personal details and start journey with us
-            </Components.Paragraph>
-            <Components.GhostButton onClick={() => toggle(false)}>
-              Sigin Up
-            </Components.GhostButton> 
-          </Components.RightOverlayPanel>
-        </Components.Overlay>
-      </Components.OverlayContainer>
-
-      <style>{`
-        @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
-        * {
-          box-sizing: border-box;
-        }
-        body {
-          background: #f6f5f7;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
-          font-family: "Montserrat", sans-serif;
-          height: 100vh;
-          margin: -20px 0 50px;
-        }
-        
-        /* Media Queries */
-        @media (max-width: 768px) {
-          /* Adjust styles for smaller screens */
-          // ... Add your responsive styles here ...
-        }
-      `}</style>
-    </Components.Container>
+    <Container>
+      {isSignIn ? (
+        <SignInContainer>
+        <Form onSubmit={handleLogin}>
+          <Title>Sign In</Title>
+          {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
+          {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+          <Input type="email" name="email" placeholder="Email" required />
+          <Input type="password" name="password" placeholder="Password" required />
+          <Button type="submit">Sign In</Button>
+          <p>
+            Don't have an account?{' '}
+            <Button type="button" onClick={toggleSignIn}>
+              Sign Up
+            </Button>
+          </p>
+        </Form>
+        </SignInContainer>
+      ) : (
+        <SignUpContainer>
+          <Form onSubmit={handleRegistration}>
+            <Title>Sign Up</Title>
+            {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
+            {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+            <Input type="text" name="name" placeholder="Name" required />
+            <Input type="email" name="email" placeholder="Email" required />
+            <Input type="password" name="password" placeholder="Password" required />
+            <Button type="submit">Sign Up</Button>
+            <p>
+              Already have an account?{' '}
+              <Button type="button" onClick={toggleSignIn}>
+                Sign In
+              </Button>
+            </p>
+          </Form>
+        </SignUpContainer>
+      )}
+    </Container>
   );
 }
 
