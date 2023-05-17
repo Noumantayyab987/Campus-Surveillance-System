@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { FaBars, FaTh, FaUserAlt, FaRegChartBar } from 'react-icons/fa';
+import {FaTh, FaUserAlt, FaRegChartBar } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import styled, {  } from 'styled-components';
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const toggle = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(true); // Add a new function to close the menu
 
   const menuItems = [
@@ -26,7 +25,6 @@ const Sidebar = () => {
     <SidebarContainer isOpen={isOpen}>
       <LogoWrapper>
         <LogoImage isOpen={isOpen} src="/logo.png" alt="Logo" />
-        <ToggleIcon onClick={toggle} />
       </LogoWrapper>
       <MenuList>
         {menuItems.map((item, index) => (
@@ -61,19 +59,51 @@ const DashboardLayout = ({ children }) => {
 
 const LayoutContainer = styled.div`
   display: flex;
+  
 `;
 
 const SidebarContainer = styled.div`
   width: 240px;
   height: 100vh;
-  background-color: #0d0830;
+  background-color: #031837;
   color: #fff;
   position: relative;
   z-index: 1;
   overflow-y: auto;
   transition: width 0.3s ease-in-out;
   box-shadow: 2px 0 4px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+
+  /* Add styles for the bubbles */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+  }
+
+  /* Style for the left bubble */
+  &::before {
+    left: 0;
+    background-color: #5c4fa1; /* Replace with your desired color */
+    left:-26%;
+    bottom: 0%;
+
+  }
+
+  /* Style for the right bubble */
+  &::after {
+    right: 0;
+    background-color: #3965ae; /* Replace with your desired color */
+    left:21%;
+    bottom: -8%;
+    z-index: 100;
+  }
 `;
+
 
 const LogoWrapper = styled.div`
   display: flex;
@@ -90,10 +120,7 @@ const LogoImage = styled.img`
   transition: width 0.3s ease-in-out;
 `;
 
-const ToggleIcon = styled(FaBars)`
-  font-size: 24px;
-  cursor: pointer;
-`;
+
 
 const MenuList = styled.ul`
   list-style-type: none;
@@ -130,7 +157,7 @@ const MenuItemText = styled.span`
 
 const MainContent = styled.div `
 flex: 1; height: 100vh;
-background: linear-gradient(rgb(255, 255, 255), rgb(0 181 255));
+background: #f0f1f3;
 
 
 

@@ -251,7 +251,7 @@ const UploadVideoFootage = () => {
           margin-top: 2%;
           margin-left: 2%;
           margin-right: 2%;
-          background: rgba( 74, 144, 226, 0 );
+          background: #fffffe;
           box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
           backdrop-filter: blur( 14px );
           -webkit-backdrop-filter: blur( 14px );

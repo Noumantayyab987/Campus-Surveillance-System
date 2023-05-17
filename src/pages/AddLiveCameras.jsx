@@ -202,8 +202,7 @@ const AddLiveCameras = () => {
         margin-top: 2%;
         margin-left: 2%;
         margin-right: 2%;
-        background: linear-gradient(to bottom right, #1b1443, #241a61, #1b1443);
-        background: rgba( 74, 144, 226, 0 );
+        background: #fffffe;
         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
         backdrop-filter: blur( 14px );
         -webkit-backdrop-filter: blur( 14px );
@@ -265,9 +264,8 @@ const AddLiveCameras = () => {
         
       }
       .pictures-box {
-        background-color: #f7f7f7;
+        background-color: #fffffe;
         max-width: 800px;
-        background: rgba( 74, 144, 226, 0 );
             box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
             backdrop-filter: blur( 14px );
             -webkit-backdrop-filter: blur( 14px );

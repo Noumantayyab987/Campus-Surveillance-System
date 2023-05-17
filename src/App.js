@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import DashboardLayout from './components/DashboardLayout';
 import Dashboard from './pages/Dashboard';
 import UploadVideoFootage from './pages/UploadVideoFootage';
@@ -17,17 +17,14 @@ const App = () => {
     const { isAuthenticated } = useAuth();
   
     useEffect(() => {
-      if (!isAuthenticated()) {
+      if (!isAuthenticated() && path !== '/') {
         navigate('/');
-        return; // Add return statement here
-      } else {
-        navigate('/dashboard');
-        return; // Add return statement here
       }
-    }, [isAuthenticated, navigate]);
+    }, [isAuthenticated, navigate, path]);
   
-    return element;
+    return isAuthenticated() ? element : <Navigate to="/" />;
   };
+  
   
   
   

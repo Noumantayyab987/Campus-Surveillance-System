@@ -63,11 +63,11 @@ function Dashboard() {
           padding: 20px;
           margin-bottom: 2rem;
           box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-          background: rgba(74, 144, 226, 0);
+          background: #fffffe;
           box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
           backdrop-filter: blur(14px);
           -webkit-backdrop-filter: blur(14px);
-          border-radius: 10px;
+          border-radius: 20px;
           border: 1px solid rgba(255, 255, 255, 0.18);
           margin-top: 1rem;
         }
